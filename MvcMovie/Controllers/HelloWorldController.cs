@@ -1,12 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
     public class HelloWorldController : Controller
     {
-        public IActionResult Index()
+        //
+        // GET: /HelloWorld/
+        public string Index()
         {
-            return View();
+            return "This is my default action...";
+        }
+
+        //
+        // GET: /HelloWorld/Welcome/
+
+        public string Welcome(string name, int ID = 1) //Defaults to 1 if ID value is not inputted.
+        {
+            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
     }
 }
